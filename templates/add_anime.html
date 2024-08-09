@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Add Anime</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: black;
+            color: white;
+        }
+        .container {
+            display: flex;
+            
+        }
+
+        .form-section {
+            flex: 1;
+            
+        }
+
+        .sidebar {
+            flex: 1;
+            padding-left: 20px;
+            background-color: white;
+            color: black;
+        }
+
+        .sidebar img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="form-section" style="margin-left:20px">
+            <h1 style="background:black;color:white;margin: 0;padding: 0; "><a style="text-decoration: none;" href="{%url 'index'%}">Add Anime</a></h1>
+            <form action="/add+anime/" method="POST">
+                {% csrf_token %}
+                <label for="anime_name">Anime Name:</label>
+                <input type="text" id="anime_name" name="anime_name" required><br><br>
+
+                <label for="image_url">Image URL:</label>
+                <input type="text" id="image_url" name="image_url" required><br><br>
+
+                <label for="description">Description:</label>
+                <textarea id="description" name="description" required></textarea><br><br>
+
+                <label for="watch_url1">Watch URL 1:</label>
+                <input type="text" id="watch_url1" name="watch_url1" required><br><br>
+
+                <label for="watch_url2">Watch URL 2:</label>
+                <input type="text" id="watch_url2" name="watch_url2"><br><br>
+
+                <label for="hashtag">Hashtag:</label>
+                <input type="text" id="hashtag" name="hashtag" required><br><br>
+
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+        <div class="sidebar">
+            <h3>HTML Preview</h3>
+            <div class="html_preview" id="html_preview" style="width: 91%;height: auto;">
+                <html>
+
+                <head>
+                    <title>Homepage</title>
+                </head>
+
+                <body style="padding:0;margin:0">
+
+                    <h1 style="background:black;color:white">Homepage</h1>
+                    <div style="display:grid;grid-template-columns:auto auto;margin:10px;grid-gap:20px">
+                        <img id="anime_image_preview" src="https://cdn.myanimelist.net/images/anime/1337/136363l.jpg" alt="Anime: BlackClover"
+                            style="width: 47%;height: auto;">
+                        <div style="display:grid;grid-template-rows:auto auto;">
+                            <span style="margin:0 26%;">
+                                <h2 id="anime_name_preview">BlackClover</h2>
+                                <p id="anime_hashtag_preview">#Every #7 #days #on #Thursdays</p>
+                            </span>
+                            <p id="anime_description_preview">As a lionhearted boy who can’t wield magic strives for the title of Wizard King, four
+                                banished Wizard Kings of yore return to crush the Clover Kingdom.</p>
+                        </div>
+                    </div>
+                    <br><br>
+                    <hr><br><br>
+                    <div style="display:grid;grid-template-columns:auto auto;margin:10px;grid-gap:15px;">
+
+                        <iframe id="anime_url1_preview" style="aspect-ratio: 16 / 9;width: 100% !important;" width="560" height="315"
+                            src="https://www.youtube.com/embed/kcpSP31USNw" title="YouTube video player" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+                        <iframe id="anime_url2_preview" style="aspect-ratio: 16 / 9;width: 100% !important;" width="560" height="315"
+                            src="https://www.youtube.com/embed/M-JD8QqStBg" title="YouTube video player" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+                    </div>
+                </body>
+
+                </html>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('image_url').addEventListener('input', function () {
+            const imageUrl = this.value;
+            document.getElementById('anime_image_preview').src = imageUrl;
+        });
+
+        document.getElementById('anime_name').addEventListener('input', function () {
+            const animeName = this.value;
+            document.getElementById('anime_name_preview').textContent = animeName;
+        });
+
+        document.getElementById('description').addEventListener('input', function () {
+            const description = this.value;
+            document.getElementById('anime_description_preview').textContent = description;
+        });
+
+        document.getElementById('watch_url1').addEventListener('input', function () {
+            const watchUrl1 = this.value;
+            document.getElementById('anime_url1_preview').src = watchUrl1;
+        });
+
+        document.getElementById('watch_url2').addEventListener('input', function () {
+            const watchUrl2 = this.value;
+            document.getElementById('anime_url2_preview').src = watchUrl2;
+        });
+
+        document.getElementById('hashtag').addEventListener('input', function () {
+            const hashtag = this.value;
+            document.getElementById('anime_hashtag_preview').textContent = hashtag;
+        });
+    </script>
+</body>
+
+</html>
