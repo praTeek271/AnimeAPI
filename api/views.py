@@ -1,6 +1,6 @@
 from django.http import JsonResponse,HttpResponse
 
-from local.views import fetch_data_anime
+from localapp.views import fetch_data_anime
 import json
 
 
